@@ -1,0 +1,28 @@
+ATM Cash Withdrawal - Approach
+================================
+
+For this program, my goal was to simulate a basic ATM terminal experience using
+fundamental C constructs — no arrays, no functions, just a clean do-while loop
+driving the whole flow.
+
+I started by defining all variables inside the loop so they reset fresh on every
+transaction. The daily limit (Rs. 20,000) is hardcoded as a constant since it
+doesn't change between sessions.
+
+PIN validation comes first — if the entered PIN falls outside the 4-digit range
+(1000–9999), the program flags it as invalid and loops back immediately using
+'continue', skipping the rest of the transaction logic.
+
+For the withdrawal, I applied three checks in order:
+  1. Must be a multiple of 500 (ATM dispenses in 500/1000 notes)
+  2. Cannot exceed the current balance
+  3. Cannot exceed the daily withdrawal limit
+
+If all checks pass, I calculate the note breakdown using integer division and
+modulo — first extract 1000-note count, then 500, then 100. This greedy approach
+works cleanly since the amount is always a multiple of 500.
+
+At the end of each transaction, the user is asked if they want another one.
+The outer do-while keeps the session alive as long as they enter 'y'.
+
+The logic is straightforward but covers the core edge cases a real ATM would handle.

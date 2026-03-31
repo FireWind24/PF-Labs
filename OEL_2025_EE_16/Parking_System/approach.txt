@@ -1,0 +1,30 @@
+Parking System - Approach
+==========================
+
+This program manages a basic parking lot — tracking vehicle types, calculating
+charges, and reporting total revenue at the end of the session.
+
+I used an infinite while(1) loop as the main driver, with a break on choice 4
+(Exit) to end the session cleanly. This felt more natural than a do-while here
+since the exit condition is menu-driven rather than a yes/no prompt.
+
+The three vehicle rates (Car: Rs.100/hr, Bike: Rs.50/hr, Truck: Rs.200/hr) are
+stored in named integer variables at the top rather than being magic numbers inside
+the switch. This way, if the rates ever need updating, there's one place to change them.
+
+The flow for each vehicle entry is:
+  1. Display menu, read vehicle type
+  2. Validate choice (reject anything outside 1–4)
+  3. Read parking hours
+  4. Use a switch-case to compute charge = rate * hours
+  5. Show the charge and ask for confirmation
+
+The confirmation step before finalizing is intentional — it lets the operator
+correct a mistake (wrong vehicle type or hours) before it gets counted. Only on
+'y' confirmation does the vehicle count and revenue tally get updated.
+
+A second prompt asks whether to continue or exit, giving control back to the
+operator between entries.
+
+Finally, after the loop breaks, total vehicles parked and total revenue are printed
+as a simple end-of-session summary.
