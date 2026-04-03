@@ -1,7 +1,7 @@
 Parking System - Approach
 ==========================
 
-This program manages a basic parking lot — tracking vehicle types, calculating
+This program manages a basic parking lot tracking vehicle types, calculating
 charges, and reporting total revenue at the end of the session.
 
 I used an infinite while(1) loop as the main driver, with a break on choice 4
