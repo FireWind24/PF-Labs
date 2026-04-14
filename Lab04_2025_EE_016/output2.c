@@ -1,12 +1,22 @@
 #include <stdio.h>
-
 int main(void) {
-    int sum = 0;
+int x;
+printf("Using break:\n");
+for (x = 1; x <= 10; ++x) {
+if (x == 5) {
+break;
+}
+printf("%d ", x);
+}
+printf("\nBroke out of loop at x = %d\n\n", x);
+printf("Using continue:\n");
+for (x = 1; x <= 10; ++x) {
+if (x % 2 == 0) {
 
-    for (int i = 1; i <= 10; i++) {
-        sum += i;
-    }
-    printf("Sum of first 10 natural numbers: %d\n", sum);
-
-    return 0;
+continue;
+}
+printf("%d ", x);
+}
+printf("\n");
+return 0;
 }
