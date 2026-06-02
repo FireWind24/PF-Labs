@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <assert.h>
 #define MAX_LEN 32
 void bubble_sort(int[], int); /*Prototypes of the sorting algos*/
 void minimum_element(int[], int);
@@ -10,7 +11,7 @@ int main(int argc, char* argv[]){
     int count =  0;
     int use_bubble = 0;
     int quiet_mode = 0;
-    if (argc == 1){ printf("USAGE: Enter Integers to Sort them in ascending order, use flags -b and -q for bubble sort and quiet mode respectively");
+    if (argc == 1){ printf("usage: sorter [-b] [-q] number1 [number2 ... ] (maximum 32 numbers)\n");
     return 1;}
 
     for(int i = 1; i < argc; i++){ /*checking for flags on every iteration so flags can be anywhere and as many*/
@@ -21,9 +22,9 @@ int main(int argc, char* argv[]){
         quiet_mode = 1;
         }
         else{
-            if(count >= MAX_LEN){                               /*Checking if MAX LENGTH is reaced*/
-                printf("Cutting off from %d", atoi(argv[i]));
-                break;
+            if(count >= MAX_LEN){                               /*Checking if MAX LENGTH is reached*/
+                printf("usage: sorter [-b] [-q] number1 [number2 ... ] (maximum 32 numbers)\n");
+                return 1;
             }
             number_array[count] = atoi(argv[i]); /*Otherwise appendind the current input argument to my array after casting it to int*/
             count++; //keeping count of the array integers
@@ -32,7 +33,7 @@ int main(int argc, char* argv[]){
 
 
     if (count == 0){
-        printf("Nothing was entered!");
+        printf("usage: sorter [-b] [-q] number1 [number2 ... ] (maximum 32 numbers)\n");
         return 1;
     }
     if (use_bubble == 1){ /*Algorithm Choice, using bubble if flag seen, other wise defaulting to selection sort*/
@@ -61,6 +62,9 @@ void bubble_sort(int arr[], int size){ /*Implementation of Bubble Sort*/
             }
         }
     }
+for (int i = 0; i < size; i++){
+    assert(arr[i] >= arr[i-1]);
+}
 }
 void minimum_element(int arr[], int size){ /*Implementation of Selection Sort*/
     int start = 0; //starting with index 0
@@ -76,4 +80,7 @@ void minimum_element(int arr[], int size){ /*Implementation of Selection Sort*/
     arr[start] = arr[smallest];
     arr[smallest]= temp;
    start++;} //appending the start position from the next iteration 
+for (int i = 0; i < size; i++){
+    assert(arr[i] >= arr[i-1]);
+}
 }
